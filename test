@@ -4,31 +4,37 @@ import java.util.Scanner;
 
 public class MaxSum
 {
-	public static void main(String[] args)
-	{
-		@SuppressWarnings("resource")
-		Scanner sc=new Scanner(System.in);
-		int[] su=new int[1000];
-		System.out.println("请输入数组元素个数：");
-		int n=sc.nextInt();
-		System.out.println("请输入数组元素：");
-		for(int i=0;i<n;i++)
-		{
-			su[i]=sc.nextInt();
-		}
-		int maxSum = su[0];
-		for(int i=0;i<n-1;i++)
-		{
-			int sum=0;
-			for (int j = i+1; j>=0; j--)
-			{
-				sum += su[j];
-				if (sum>maxSum)
-				{
-					maxSum = sum;
-				}
-			}
-		}
-		System.out.println("最大子段和："+maxSum);
-	}
+    public static void main(String[] args)
+    {
+        @SuppressWarnings("resource")
+        Scanner sc=new Scanner(System.in);
+        int[] su=new int[1000];
+        System.out.println("请输入数组元素个数：");
+        int n=sc.nextInt();
+        System.out.println("请输入数组元素：");
+        for(int i=0;i<n;i++)
+        {
+            su[i]=sc.nextInt();
+        }
+        int maxSum;
+        maxSum=Maxnum(n,su);
+        System.out.println("最大子段和："+maxSum);
+    }
+    public static int Maxnum(int n,int[] su)
+    {
+        int maxSum = su[0];//记录最大子数组的和
+        for(int i=0;i<n-1;i++)
+        {
+            int sum=0;
+            for (int j = i+1; j>=0; j--)//寻找以su[i+1]为终点的最大子数组
+            {
+                sum += su[j];
+                if (sum>maxSum)
+                {
+                    maxSum = sum;
+                }
+            }
+        }
+        return maxSum;
+    }
 }
